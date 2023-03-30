@@ -6,30 +6,32 @@ public class BankAccount {
         Scanner s = new Scanner(System.in);
         
         Bank person = new Bank();
-        double deposito = person.dinheiroDepositado;
-        double saque = person.dinheiroSacado;
-        double quantia = person.amount;
-        int conta = person.acc;
         int acessarMenu = 0;
         
-        System.out.println("Insira o numero da sua conta: ");
-            conta = s.nextInt();
+        System.out.print("Insira o numero da sua conta: ");
+            person.acc = s.nextInt();
         System.out.print("Insira a quantidade: ");
-            quantia = s.nextDouble();
+            person.amount = s.nextDouble();
 
         while(acessarMenu != 5){
             System.out.println("O que você deseja realizar? ");
             System.out.println("1 - depositar | 2 - sacar | 3 - mostrar quantidade"
-            + " 4- mostrar numero da conta");
+            + " 4- mostrar numero da conta | 5 - sair ");
             acessarMenu = s.nextInt();
             
             if(acessarMenu == 1){
-                deposito = s.nextDouble();
-                System.out.println(person.getAmount());
+                person.dinheiroDepositado = s.nextDouble();
+                System.out.println(person.depositar(person.amount, person.dinheiroDepositado, 
+                person.newAmount));
             }
             if(acessarMenu == 2){
-                saque = s.nextDouble();
-                System.out.println(person.getAmount());
+                person.dinheiroSacado = s.nextDouble();
+                if(person.dinheiroSacado > person.amount){
+                    System.out.println("O valor sacado excede a sua quantidade");
+                    break;
+                }
+                System.out.println(person.sacar(person.amount, person.dinheiroSacado, 
+                person.newAmount));
             }
             if(acessarMenu == 3){
                 System.out.println(person.getAmount());

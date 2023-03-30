@@ -9,31 +9,43 @@ public class Bank {
 
     public Bank(){
     }
-   
+    public Bank(int acc, double amount, double dinheiroDepositado, double dinheiroSacado
+    , double newAmount){
+        this.acc = acc;
+        this.amount = amount;
+        this.dinheiroDepositado = dinheiroDepositado;
+        this.dinheiroSacado = dinheiroSacado;
+        this.newAmount = newAmount;
+    }
     public double getAcc() {
         return acc;
     }
-    public void depositar(double amount, double newAmount, double dinheiroDepositado){
-        newAmount = amount + dinheiroDepositado;
-    }
-    public void sacar(double amount, double dinheiroSacado, double newAmount){
-        newAmount = amount - dinheiroSacado;
-
-        if(amount <= 0){
-            System.out.println("Você está liso!");
-            }
-            if(newAmount <= 0){
-                System.out.println("Você está liso!");
+    public double depositar(double amount, double newAmount, double dinheiroDepositado){
+        if(newAmount != 0) {
+            newAmount = newAmount + dinheiroDepositado;
         }
+        newAmount = amount + dinheiroDepositado;
+        
+        return newAmount;
+    }
+    public double sacar(double amount, double dinheiroSacado, double newAmount){
+        if(newAmount != 0) {
+            newAmount = newAmount - dinheiroSacado;
+        }else{
+            newAmount = amount - dinheiroSacado;
+        }
+        if(newAmount <= 0){
+            throw new RuntimeException("Você está liso!");
+        }
+        return newAmount;
     }
     public double getAmount() {
-        if(newAmount <= 0){
-            throw new IllegalStateException("Você está liso!");
-        }else{
-        return newAmount;
-        }
+        return amount;
     }
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+    public double getNewAmount(){
+        return newAmount;
     }
 }
