@@ -20,7 +20,7 @@ public class Bank {
     public double getAcc() {
         return acc;
     }
-    public double depositar(double amount, double newAmount, double dinheiroDepositado){
+    public double depositar(double amount, double dinheiroDepositado, double newAmount){
         if(newAmount != 0) {
             newAmount = newAmount + dinheiroDepositado;
         }
